@@ -5,22 +5,22 @@
     <title>Yarnville</title>
     <style>
         body { font-family: sans-serif; text-align: center; background-color: #fdf6e3; padding: 20px; }
-        .yarnling-card { border: 1px solid #ccc; padding: 15px; margin: 10px; display: inline-block; width: 200px; border-radius: 10px; background: white; }
+        .card { border: 2px solid #5d4037; padding: 20px; margin: 20px auto; width: 300px; border-radius: 15px; background: white; }
     </style>
 </head>
 <body>
     <h1>Welcome to Yarnville!</h1>
-    <div id="yarnlings-list"></div>
+    <div id="content">Loading Binkie Bunny...</div>
 
     <script>
-        // Ons probeer nou 'n ander pad om te sien of die data daar is
-        fetch('/admin/config.yml')
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('yarnlings-list').innerHTML = "<p>Die admin-konneksie is gevind!</p>";
-                } else {
-                    document.getElementById('yarnlings-list').innerHTML = "<p>Data nog nie gevind nie.</p>";
-                }
+        fetch('/yarnlings/binkie-bunny.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('content').innerHTML = 
+                `<div class="card"><h2>${data.name}</h2><p>${data.body}</p></div>`;
+            })
+            .catch(err => {
+                document.getElementById('content').innerHTML = "Kon Binkie nie kry nie. Wag 'n oomblik...";
             });
     </script>
 </body>
