@@ -7,13 +7,15 @@
         body { font-family: sans-serif; text-align: center; background-color: #fdf6e3; padding: 20px; }
         .yarnling-card { border: 1px solid #ccc; padding: 15px; margin: 10px; display: inline-block; width: 200px; border-radius: 10px; background: white; }
     </style>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <h1>Welcome in Yarnville!</h1>
+    <h1>Welcome to Yarnville!</h1>
+    
     <div id="yarnlings-list"></div>
+
     <script>
-        fetch('/content/yarnlings/index.json')
+        // Ons soek nou in die 'yarnlings' gids
+        fetch('/yarnlings/index.json')
             .then(response => response.json())
             .then(data => {
                 const list = document.getElementById('yarnlings-list');
@@ -23,7 +25,8 @@
                     div.innerHTML = `<h3>${item.name}</h3><p>${item.body}</p>`;
                     list.appendChild(div);
                 });
-            });
+            })
+            .catch(err => console.log('Nog geen karakters nie, publiseer een in /admin!'));
     </script>
 </body>
 </html>
