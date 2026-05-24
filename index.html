@@ -1,71 +1,29 @@
-10
-
 <!DOCTYPE html>
-
-11
-
 <html>
-
-12
-
 <head>
-
-13
-
-14
-
-<meta charset="UTF-8">
-
-15
-
-16
-
-<title>Yarnville</title>
-
-<style>
-
-body { font-family: sans-serif;
-
-text-align: center; background-
-
-17
-
-18
-
-19
-
-h1 { color: #5d4037; }
-
-</style>
-
-<!-- VOEG HIERDIE LYN BY OM DIE INLO
-
-20
-
-<script src="https://identity.netlif
-
-identity-widget.js"></script>
-
-21
-
+    <meta charset="UTF-8">
+    <title>Yarnville</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background-color: #fdf6e3; padding: 20px; }
+        .yarnling-card { border: 1px solid #ccc; padding: 15px; margin: 10px; display: inline-block; width: 200px; border-radius: 10px; background: white; }
+    </style>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-
-22
-
 <body>
-
-23
-
-<h1>Welcome to Yarnville!</h1>
-
-24
-
-<p>Our magical world is coming soon.
-
-25
-
+    <h1>Welkom in Yarnville!</h1>
+    <div id="yarnlings-list"></div>
+    <script>
+        fetch('/content/yarnlings/index.json')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('yarnlings-list');
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'yarnling-card';
+                    div.innerHTML = `<h3>${item.name}</h3><p>${item.body}</p>`;
+                    list.appendChild(div);
+                });
+            });
+    </script>
 </body>
-
-26
-
 </html>
