@@ -10,23 +10,11 @@
 </head>
 <body>
     <h1>Welcome to Yarnville!</h1>
-    
     <div id="yarnlings-list"></div>
 
     <script>
-        // Ons soek nou in die 'yarnlings' gids
-        fetch('/yarnlings/index.json')
-            .then(response => response.json())
-            .then(data => {
-                const list = document.getElementById('yarnlings-list');
-                data.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'yarnling-card';
-                    div.innerHTML = `<h3>${item.name}</h3><p>${item.body}</p>`;
-                    list.appendChild(div);
-                });
-            })
-            .catch(err => console.log('Nog geen karakters nie, publiseer een in /admin!'));
+        // Bladsy is nou skoon en gereed.
+        console.log("Yarnville is aanlyn!");
     </script>
 </body>
 </html>
