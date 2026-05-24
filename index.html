@@ -13,8 +13,15 @@
     <div id="yarnlings-list"></div>
 
     <script>
-        // Bladsy is nou skoon en gereed.
-        console.log("Yarnville is aanlyn!");
+        // Ons probeer nou 'n ander pad om te sien of die data daar is
+        fetch('/admin/config.yml')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('yarnlings-list').innerHTML = "<p>Die admin-konneksie is gevind!</p>";
+                } else {
+                    document.getElementById('yarnlings-list').innerHTML = "<p>Data nog nie gevind nie.</p>";
+                }
+            });
     </script>
 </body>
 </html>
